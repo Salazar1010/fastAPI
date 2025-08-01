@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Proyectos</title>
+</head>
+<body>
+    <h1>Lista de Proyectos</h1>
+    <ul id="project-list"></ul>
+
+    <script>
+        fetch("/projects")
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById("project-list");
+                data.projects.forEach(proj => {
+                    const li = document.createElement("li");
+                    li.textContent = `${proj.name} - ${proj.status}`;
+                    list.appendChild(li);
+                });
+            });
+    </script>
+</body>
+</html>
